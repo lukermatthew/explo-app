@@ -18,8 +18,8 @@ const HeaderNav = () => {
             <Image
               source={{ uri: "https://avatar.iran.liara.run/public/1" }} // Replace with your avatar image URL
               style={{
-                width: 40,
-                height: 40,
+                width: 50,
+                height: 50,
                 borderRadius: 25, // Make it a perfect circle
                 shadowColor: "#fff", // White shadow color
                 shadowOffset: { width: 0, height: 4 }, // Shadow offset
@@ -34,7 +34,7 @@ const HeaderNav = () => {
             style={{
               flexDirection: "row",
               alignItems: "center",
-              backgroundColor: "blue", // Green background for the badge
+              backgroundColor: "#FF9100", // Green background for the badge
               paddingVertical: 5,
               paddingHorizontal: 10,
               borderRadius: 25, // Circular badge
@@ -48,44 +48,44 @@ const HeaderNav = () => {
             <Text
               style={{
                 color: "white",
-                fontSize: 16,
+                fontSize: 12,
                 fontWeight: "600",
                 marginLeft: 5,
               }}
             >
-              Explorer
+              Newbie
             </Text>
           </View>
         </View>
         {/* Added marginLeft to separate text from avatar */}
         {/* Notification with Badge */}
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
           {/* Notification Icon */}
           <TouchableOpacity
             style={{
-              width: 50, // Width of the container
-              height: 50, // Height of the container
-              justifyContent: "center", // Center the icon horizontally
-              alignItems: "center", // Center the icon vertically
-              borderRadius: 25, // Make it a circle
-              backgroundColor: "#f0f0f0", // Gray background inside the container
+              width: 30,
+              height: 30,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 25,
+              backgroundColor: "#f0f0f0",
             }}
           >
-            <Ionicons name="notifications-outline" size={26} color="#ff4b33" />
+            <Ionicons name="notifications-outline" size={26} color="#059212" />
           </TouchableOpacity>
 
           {/* Settings Icon */}
           <TouchableOpacity
             style={{
-              width: 50, // Width of the container
-              height: 50, // Height of the container
+              width: 30, // Width of the container
+              height: 30, // Height of the container
               justifyContent: "center", // Center the icon horizontally
               alignItems: "center", // Center the icon vertically
               borderRadius: 25, // Make it a circle
               backgroundColor: "#f0f0f0", // Gray background inside the container
             }}
           >
-            <Ionicons name="settings-outline" size={26} color="#ff4b33" />
+            <Ionicons name="settings-outline" size={26} color="#059212" />
           </TouchableOpacity>
         </View>
       </View>

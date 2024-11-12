@@ -36,7 +36,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "trophy" : "trophy-outline"}
-              color="#640D5F"
+              color="#059212"
             />
           ),
         }}
@@ -50,7 +50,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "ticket" : "ticket-outline"}
-              color="#640D5F"
+              color="#059212"
             />
           ),
         }}
@@ -70,7 +70,7 @@ export default function TabLayout() {
                 height: 70,
                 top: -25,
                 borderRadius: 35,
-                backgroundColor: "#0D92F4",
+                backgroundColor: "#059212",
                 shadowColor: "#000",
                 shadowOffset: { width: 0, height: 4 },
                 shadowOpacity: 0.3,
@@ -94,7 +94,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "heart" : "heart-outline"}
-              color="#640D5F"
+              color="#059212"
             />
           ),
         }}
@@ -108,7 +108,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "people" : "people-outline"}
-              color="#640D5F"
+              color="#059212"
             />
           ),
         }}
