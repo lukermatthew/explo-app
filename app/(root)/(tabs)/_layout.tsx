@@ -35,7 +35,7 @@ export default function TabLayout() {
           title: "Home",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "trophy" : "trophy-outline"}
+              name={focused ? "home" : "home-outline"}
               color="#059212"
             />
           ),
@@ -80,7 +80,7 @@ export default function TabLayout() {
               onPress={handlePress}
               activeOpacity={1} // This will prevent the button from changing opacity when pressed
             >
-              <TabBarIcon name="walk-sharp" color="white" size={32} />
+              <TabBarIcon name="trophy" color="white" size={32} />
             </TouchableOpacity>
           ),
         }}

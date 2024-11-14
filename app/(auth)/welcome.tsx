@@ -57,7 +57,7 @@ const Onboarding = () => {
       </Swiper>
       {isLastSlide && (
         <CustomButton
-          title={isLastSlide && "Get Started"}
+          title={isLastSlide && "The Adventure Begins"}
           onPress={() =>
             isLastSlide
               ? router.replace("/(tabs)/")

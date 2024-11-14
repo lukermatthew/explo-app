@@ -34,7 +34,7 @@ const HeaderNav = () => {
             style={{
               flexDirection: "row",
               alignItems: "center",
-              backgroundColor: "#FF9100", // Green background for the badge
+              backgroundColor: "#059212", // Green background for the badge
               paddingVertical: 5,
               paddingHorizontal: 10,
               borderRadius: 25, // Circular badge
@@ -53,7 +53,7 @@ const HeaderNav = () => {
                 marginLeft: 5,
               }}
             >
-              Newbie
+              Explorer
             </Text>
           </View>
         </View>
