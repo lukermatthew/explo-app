@@ -1,7 +1,5 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
-import { router } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import { ScrollView, View } from "react-native";
 import ProductCard from "./ProductCard";
 
 // Define prop types for TrendingAndPopular

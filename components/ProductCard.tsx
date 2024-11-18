@@ -57,7 +57,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <TouchableOpacity
       onPress={onPress} // Handle card click
-      className="bg-white rounded-2xl border-1 border-black my-4 mx-1 w-[120px] h-[150px]"
+      className="bg-white rounded-2xl border-1 border-black my-4 mx-1 w-[120px] h-[150px] shadow-sm"
     >
       {/* Product Image with Wishlist Icon */}
       <View className="overflow-hidden w-full relative">

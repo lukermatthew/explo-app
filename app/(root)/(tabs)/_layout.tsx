@@ -14,7 +14,7 @@ export default function TabLayout() {
         tabBarInactiveTintColor: "#A1A1A1",
         headerShown: false,
         tabBarStyle: {
-          height: 80,
+          height: 85,
           backgroundColor: Colors[colorScheme ?? "light"].background,
           borderTopWidth: 0,
           shadowColor: "#000",
@@ -24,7 +24,7 @@ export default function TabLayout() {
           elevation: 6,
         },
         tabBarLabelStyle: {
-          fontSize: 12,
+          fontSize: 10,
           fontWeight: "normal",
           marginBottom: 4,
           textTransform: "capitalize",
@@ -37,9 +37,9 @@ export default function TabLayout() {
           title: "Home",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "home" : "home-outline"}
+              name={focused ? "home-sharp" : "home-outline"}
               color={focused ? "#059212" : color}
-              size={20}
+              size={22}
             />
           ),
         }}
@@ -53,7 +53,7 @@ export default function TabLayout() {
             <TabBarIcon
               name={focused ? "ticket" : "ticket-outline"}
               color={focused ? "#059212" : color}
-              size={20}
+              size={22}
             />
           ),
         }}
@@ -67,7 +67,7 @@ export default function TabLayout() {
             <TabBarIcon
               name={focused ? "trophy" : "trophy-outline"}
               color={focused ? "#059212" : color}
-              size={20}
+              size={22}
             />
           ),
         }}
@@ -81,7 +81,7 @@ export default function TabLayout() {
             <TabBarIcon
               name={focused ? "heart" : "heart-outline"}
               color={focused ? "#059212" : color}
-              size={20}
+              size={22}
             />
           ),
         }}
@@ -95,7 +95,7 @@ export default function TabLayout() {
             <TabBarIcon
               name={focused ? "people" : "people-outline"}
               color={focused ? "#059212" : color}
-              size={20}
+              size={22}
             />
           ),
         }}

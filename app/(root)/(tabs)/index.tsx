@@ -25,12 +25,20 @@ import {
 import CategoryList from "@/components/CategoryList";
 import { router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import Nearby from "@/components/Nearby";
 
 interface Product {
   id: string;
   title: string;
   price: number;
   rating: number;
+  image: any;
+}
+
+interface Location {
+  id: string;
+  title: string;
+  km: number;
   image: any;
 }
 
@@ -107,6 +115,30 @@ export const products: Product[] = [
   },
 ];
 
+export const locations: Location[] = [
+  {
+    id: "1",
+    title: "Manila",
+    km: 0,
+    image:
+      "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0qJmYpyk7QBZct7OZNs8J49-8gz6y7vvso9MGafXCC-klbL9MPbqRFLe72qaU2vQ4kNHC83D6S2M3isHXv8yuTyAk9gSRuIO-NfCquRL3LO35y3jBwhY7WPNwAsZ0HBZ6q1R-cAU7vUEs/s1600/P1180985.JPG", // Manila Image
+  },
+  {
+    id: "2",
+    title: "Quezon City",
+    km: 15.2,
+    image:
+      "https://gttp.images.tshiftcdn.com/223805/x/0/quezon-city-diliman-quezon-memorial-circle-shutterstock-1309166275.jpg?ar=1.91%3A1&w=1200&fit=crop", // Quezon City Image
+  },
+  {
+    id: "3",
+    title: "Tagaytay",
+    km: 56.3,
+    image:
+      "https://x2s9t6w3.rocketcdn.me/wp-content/uploads/2022/04/taal-volcano-1.jpg", // Tagaytay Image
+  },
+];
+
 const Home = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -163,8 +195,8 @@ const Home = () => {
           products={products}
         />
 
-        <View className="flex-row justify-between items-center mt-6 px-2">
-          <Text className="text-[16px] font-bold">Near Me</Text>
+        <View className="flex-row justify-between items-center mt-6 mb-2 px-2">
+          <Text className="text-[16px] font-bold">Nearby discover</Text>
           <TouchableOpacity
             className="flex-row items-center"
             onPress={() => router.push("./feature/activity")}
@@ -175,10 +207,7 @@ const Home = () => {
             </View>
           </TouchableOpacity>
         </View>
-        <TrendingAndPopular
-          handleProductClick={handleProductClick}
-          products={products}
-        />
+        <Nearby handleProductClick={handleProductClick} locations={locations} />
 
         <View className="flex-row justify-between items-center mt-6 px-2">
           <Text className="text-[16px] font-bold">Recently Viewed</Text>
