@@ -208,24 +208,9 @@ const Leaderboard: React.FC = () => {
   return (
     <View className="flex-1">
       <SafeAreaView
-        className="items-center justify-center rounded-b-[60px]  h-[280px] py-1 relative"
-        style={{ backgroundColor: "#0D92F4" }}
+        className="items-center justify-center rounded-b-[60px] h-[280px] py-1 relative"
+        style={{ backgroundColor: "#37AFE1" }}
       >
-        {/* Confetti Animation */}
-        {/* <LottieView
-    source={require('../assets/confetti.json')} // Path to your confetti animation file
-    autoPlay
-    loop
-    style={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      zIndex: 0, // Ensure confetti is in the background
-    }}
-  /> */}
-
         {/* Trophy Background Overlay */}
         <Image
           source={require("@/assets/images/categories/confetti.png")}
@@ -244,7 +229,7 @@ const Leaderboard: React.FC = () => {
 
         {/* Content */}
         <Text className="text-white text-lg font-bold text-center z-10">
-          Leaderboard
+          Top User Leaderboard
         </Text>
         <FlatList
           data={topUsers}
