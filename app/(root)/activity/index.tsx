@@ -12,7 +12,7 @@ import {
 } from "react-native";
 
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { products } from "..";
+import { products } from "../(tabs)";
 
 const ActivityScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,7 +22,7 @@ const ActivityScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-row items-center px-4 py-2 bg-white">
-        <TouchableOpacity onPress={() => router.push("/")}>
+        <TouchableOpacity onPress={() => router.push("../")}>
           <FontAwesome name="arrow-left" size={20} color="#999" />
         </TouchableOpacity>
 

@@ -182,7 +182,7 @@ const Home = () => {
           <Text className="text-[16px] font-bold">Trending & Popular</Text>
           <TouchableOpacity
             className="flex-row items-center"
-            onPress={() => router.push("./feature/activity")}
+            onPress={() => router.push("../../activity")}
           >
             <Text className="text-[14px] mr-1">See all</Text>
             <View className="bg-[#059212] p-2 rounded-full">

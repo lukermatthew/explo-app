@@ -4,6 +4,8 @@ const Layout = () => {
   return (
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="activity" options={{ headerShown: false }} />
+      <Stack.Screen name="category" options={{ headerShown: false }} />
     </Stack>
   );
 };
