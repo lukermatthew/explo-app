@@ -1,39 +1,31 @@
+import Product from "@/components/Product";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-  Image,
   SafeAreaView,
+  ScrollView,
   StatusBar,
   Text,
-  View,
-  ScrollView,
   TextInput,
   TouchableOpacity,
+  View,
 } from "react-native";
-import HeaderNav from "@/components/HeaderNav";
-import banner from "@/assets/svg/banner.png";
-import ProductCard from "@/components/ProductCard";
-import diving from "@/assets/svg/diving.jpg";
-import hiking from "@/assets/svg/hiking.jpg";
-import FontAwesome from "react-native-vector-icons/FontAwesome"; // Importing FontAwesome for the search icon
-import { useRouter } from "expo-router";
-import Product from "@/components/Product";
-import { products } from ".";
 
-const ExploreScreen = () => {
-  const [searchQuery, setSearchQuery] = useState(""); // To store the search query
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { products } from "..";
+
+const ActivityScreen = () => {
+  const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   const [isFocused, setIsFocused] = useState(false);
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      {/* Search Box */}
       <View className="flex-row items-center px-4 py-2 bg-white">
-        {/* Back Button */}
-        <TouchableOpacity onPress={() => router.back()}>
+        <TouchableOpacity onPress={() => router.push("/")}>
           <FontAwesome name="arrow-left" size={20} color="#999" />
         </TouchableOpacity>
 
-        {/* Search Box */}
         <TextInput
           value={searchQuery}
           onChangeText={setSearchQuery}
@@ -54,7 +46,6 @@ const ExploreScreen = () => {
           }}
         />
 
-        {/* Cart Icon */}
         <TouchableOpacity onPress={() => router.back()}>
           <FontAwesome
             name="shopping-cart"
@@ -65,13 +56,6 @@ const ExploreScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <View className=" m-4">
-        <Text className="text-[16px] font-bold">
-          Trending & Popular Experience
-        </Text>
-      </View>
-
-      {/* Scrollable Product Cards */}
       <ScrollView
         contentContainerStyle={{
           flexDirection: "column",
@@ -80,7 +64,9 @@ const ExploreScreen = () => {
           paddingHorizontal: 10,
         }}
       >
-        {/* Scrollable Product Cards */}
+        <View className=" m-4">
+          <Text className="text-[16px] font-bold">Trending & Popular</Text>
+        </View>
 
         <View className="w-full">
           {products
@@ -100,7 +86,6 @@ const ExploreScreen = () => {
         </View>
       </ScrollView>
 
-      {/* StatusBar Setup */}
       <StatusBar
         barStyle="dark-content"
         backgroundColor="transparent"
@@ -110,4 +95,4 @@ const ExploreScreen = () => {
   );
 };
 
-export default ExploreScreen;
+export default ActivityScreen;

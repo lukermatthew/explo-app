@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-// Type for props
 interface ProductProps {
   title: string;
   price: number;
@@ -10,31 +10,89 @@ interface ProductProps {
 }
 
 const Product: React.FC<ProductProps> = ({ title, price, rating, image }) => {
+  const [isWishlisted, setIsWishlisted] = useState(false);
+
+  const handleWishlistToggle = () => {
+    setIsWishlisted(!isWishlisted);
+  };
+
+  // Render rating stars (filled and unfilled stars)
+  const renderRatingStars = (rating: number) => {
+    const fullStars = Math.floor(rating);
+    const halfStars = rating % 1 >= 0.5 ? 1 : 0;
+    const emptyStars = 5 - fullStars - halfStars;
+
+    return (
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        {[...Array(fullStars)].map((_, index) => (
+          <FontAwesome
+            key={`full-${index}`}
+            name="star"
+            size={16}
+            color="#FFD700"
+          />
+        ))}
+        {halfStars > 0 && (
+          <FontAwesome name="star-half-o" size={16} color="#FFD700" />
+        )}
+        {[...Array(emptyStars)].map((_, index) => (
+          <FontAwesome
+            key={`empty-${index}`}
+            name="star-o"
+            size={16}
+            color="#FFD700"
+          />
+        ))}
+      </View>
+    );
+  };
+
   return (
     <TouchableOpacity
       style={{
         backgroundColor: "white",
-        borderRadius: 10,
+        borderRadius: 15,
         overflow: "hidden",
-        marginBottom: 20,
-        borderWidth: 1, // Border width for card
-        borderColor: "#ddd", // Border color
-        shadowColor: "#000", // Shadow color for iOS
-        shadowOffset: { width: 0, height: 2 }, // Shadow offset for iOS
-        shadowOpacity: 0.2, // Shadow opacity for iOS
-        shadowRadius: 4, // Shadow radius for iOS
-        elevation: 4, // Shadow for Android
+        marginBottom: 10,
+        borderWidth: 1,
+        borderColor: "#ddd",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        elevation: 4,
       }}
     >
-      {/* Image */}
-      <Image
-        source={image}
-        style={{
-          width: "100%",
-          height: 180,
-          resizeMode: "cover",
-        }}
-      />
+      {/* Product Image */}
+      <View style={{ position: "relative" }}>
+        <Image
+          source={image}
+          style={{
+            width: "100%",
+            height: 180,
+            resizeMode: "cover",
+          }}
+        />
+
+        {/* Wishlist Heart Icon */}
+        <TouchableOpacity
+          onPress={handleWishlistToggle}
+          style={{
+            position: "absolute",
+            top: 10,
+            right: 10,
+            backgroundColor: "#ffffffcc",
+            padding: 6,
+            borderRadius: 50,
+          }}
+        >
+          <FontAwesome
+            name={isWishlisted ? "heart" : "heart-o"}
+            size={20}
+            color={isWishlisted ? "#FF0000" : "#000000"}
+          />
+        </TouchableOpacity>
+      </View>
 
       {/* Card Content */}
       <View style={{ padding: 10 }}>
@@ -42,10 +100,13 @@ const Product: React.FC<ProductProps> = ({ title, price, rating, image }) => {
           {title}
         </Text>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Text style={{ fontSize: 14, color: "#666" }}>Php {price}</Text>
+          <Text style={{ fontSize: 14, color: "#666" }}>
+            Php {price.toFixed(2)}
+          </Text>
+          {/* Rating */}
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Text style={{ fontSize: 14, color: "#9BCF53" }}>{rating}</Text>
-            <Text style={{ fontSize: 14, color: "#9BCF53" }}>★</Text>
+            {renderRatingStars(rating)}
+            {/* Call the function to render stars */}
           </View>
         </View>
       </View>

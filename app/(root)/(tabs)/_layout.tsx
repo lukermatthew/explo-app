@@ -1,34 +1,36 @@
-import { Tabs, useRouter } from "expo-router";
-import React from "react";
-import { View, TouchableOpacity, Text } from "react-native";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { Tabs } from "expo-router";
+import React from "react";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
-  const router = useRouter();
-
-  const handlePress = () => {
-    router.push("/explore");
-  };
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: "#059212",
+        tabBarInactiveTintColor: "#A1A1A1",
         headerShown: false,
         tabBarStyle: {
           height: 80,
+          backgroundColor: Colors[colorScheme ?? "light"].background,
+          borderTopWidth: 0,
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: -4 },
+          shadowOpacity: 0.1,
+          shadowRadius: 6,
+          elevation: 6,
         },
         tabBarLabelStyle: {
-          fontSize: 10,
-          fontWeight: "bold",
+          fontSize: 12,
+          fontWeight: "normal",
+          marginBottom: 4,
+          textTransform: "capitalize",
         },
       }}
     >
-      {/* Home Tab */}
       <Tabs.Screen
         name="index"
         options={{
@@ -36,13 +38,13 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "home" : "home-outline"}
-              color="#059212"
+              color={focused ? "#059212" : color}
+              size={20}
             />
           ),
         }}
       />
 
-      {/* Deals Tab */}
       <Tabs.Screen
         name="deal"
         options={{
@@ -50,57 +52,41 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "ticket" : "ticket-outline"}
-              color="#059212"
+              color={focused ? "#059212" : color}
+              size={20}
             />
           ),
         }}
       />
 
-      {/* Center Button Tab */}
       <Tabs.Screen
-        name="explore"
+        name="feature"
         options={{
-          tabBarButton: (props) => (
-            <TouchableOpacity
-              {...props}
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                width: 70,
-                height: 70,
-                top: -25,
-                borderRadius: 35,
-                backgroundColor: "#059212",
-                shadowColor: "#000",
-                shadowOffset: { width: 0, height: 4 },
-                shadowOpacity: 0.3,
-                shadowRadius: 4,
-                elevation: 8,
-              }}
-              onPress={handlePress}
-              activeOpacity={1} // This will prevent the button from changing opacity when pressed
-            >
-              <TabBarIcon name="trophy" color="white" size={32} />
-            </TouchableOpacity>
+          title: "Leaderboard",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "trophy" : "trophy-outline"}
+              color={focused ? "#059212" : color}
+              size={20}
+            />
           ),
         }}
       />
 
-      {/* Explore Tab */}
       <Tabs.Screen
-        name="favorite"
+        name="wishlist"
         options={{
           title: "Wishlist",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "heart" : "heart-outline"}
-              color="#059212"
+              color={focused ? "#059212" : color}
+              size={20}
             />
           ),
         }}
       />
 
-      {/* Profile Tab */}
       <Tabs.Screen
         name="profile"
         options={{
@@ -108,7 +94,8 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "people" : "people-outline"}
-              color="#059212"
+              color={focused ? "#059212" : color}
+              size={20}
             />
           ),
         }}

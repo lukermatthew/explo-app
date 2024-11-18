@@ -1,92 +1,105 @@
-import React from "react";
-import {
-  Image,
-  SafeAreaView,
-  StatusBar,
-  Text,
-  View,
-  ScrollView,
-} from "react-native";
-import HeaderNav from "@/components/HeaderNav";
+import React, { useState } from "react";
+import baking from "@/assets/svg/baking.png";
 import banner from "@/assets/svg/banner.png";
-import ProductCard from "@/components/ProductCard";
 import diving from "@/assets/svg/diving.jpg";
-import hiking from "@/assets/svg/hiking.jpg";
-import pottery from "@/assets/svg/pottery.png";
 import fishing from "@/assets/svg/fishing.png";
 import gardening from "@/assets/svg/gardening.png";
-import sports from "@/assets/svg/sports.png";
-import baking from "@/assets/svg/baking.png";
+import hiking from "@/assets/svg/hiking.jpg";
 import music from "@/assets/svg/music.png";
+import pottery from "@/assets/svg/pottery.png";
 import science from "@/assets/svg/science.png";
+import sports from "@/assets/svg/sports.png";
 import zoo from "@/assets/svg/zoo.png";
+import HeaderNav from "@/components/HeaderNav";
+import TrendingAndPopular from "@/components/TrendingAndPopular";
+import {
+  Image,
+  Modal,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import CategoryList from "@/components/CategoryList";
+import { router } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
-export const products = [
+interface Product {
+  id: string;
+  title: string;
+  price: number;
+  rating: number;
+  image: any;
+}
+
+export const products: Product[] = [
   {
-    id: 1,
+    id: "1",
     title: "Diving Adventure - Explore the Deep Blue",
-    price: 59.99, // Price in USD
+    price: 59.99,
     rating: 4.5,
     image: diving,
   },
   {
-    id: 2,
+    id: "2",
     title: "Mountain Trekking - Conquer the Peaks",
     price: 129.99,
     rating: 4.7,
     image: hiking,
   },
   {
-    id: 3,
+    id: "3",
     title: "Pottery Class - Create Masterpieces with Clay",
     price: 89.99,
     rating: 4.3,
     image: pottery,
   },
   {
-    id: 4,
+    id: "4",
     title: "Fishing Expedition - Catch the Big One",
     price: 199.99,
     rating: 4.8,
     image: fishing,
   },
   {
-    id: 5,
+    id: "5",
     title: "Gardening Experience - Grow Your Green Thumb",
     price: 299.99,
     rating: 5.0,
     image: gardening,
   },
   {
-    id: 6,
+    id: "6",
     title: "Sports Day - A Thrill for Every Athlete",
     price: 299.99,
     rating: 5.0,
     image: sports,
   },
   {
-    id: 7,
+    id: "7",
     title: "Baking Class - Master the Art of Pastry",
     price: 299.99,
     rating: 5.0,
     image: baking,
   },
   {
-    id: 8,
+    id: "8",
     title: "Music Class - Learn to Play Like a Pro",
     price: 299.99,
     rating: 5.0,
     image: music,
   },
   {
-    id: 9,
+    id: "9",
     title: "Science Exploration - Fun Experiments for All",
     price: 299.99,
     rating: 5.0,
     image: science,
   },
   {
-    id: 10,
+    id: "10",
     title: "Zoo Tour - A Fun Day with Wildlife",
     price: 299.99,
     rating: 5.0,
@@ -94,53 +107,138 @@ export const products = [
   },
 ];
 
-const HomeScreen = () => {
+const Home = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  const handleProductClick = (product: Product) => {
+    setSelectedProduct(product);
+    setModalVisible(true);
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <HeaderNav />
 
-      <ScrollView
-        contentContainerStyle={{
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          paddingHorizontal: 10,
-        }}
-      >
-        <Text className="text-[25px] font-bold px-4 bg-white">
-          Hello, Juan!
-        </Text>
+      <View className="px-4 mt-3 mb-1 bg-white">
+        <Text className="text-[25px] font-bold">Hello, Juan!</Text>
+      </View>
+
+      <ScrollView contentContainerStyle={{ paddingHorizontal: 10 }}>
         <Image
           source={banner}
-          className="w-full h-48 rounded-xl"
+          className="w-full h-48 rounded-xl mb-2"
           resizeMode="contain"
         />
 
-        {/* Scrollable Product Cards */}
-        <View className="px-4 mt-4">
+        <View className="flex-row justify-between items-center px-2">
           <Text className="text-[16px] font-bold">
-            Trending & Popular Experience
+            Activitist, Hobbyist and Experience
           </Text>
-        </View>
-        {products.map((product) => (
-          <View
-            key={product.id}
-            style={{
-              width: "48%", // Adjust to 48% width so two items fit per row
-              marginBottom: 10, // Space between rows
-            }}
+          <TouchableOpacity
+            className="flex-row items-center"
+            onPress={() => router.push("./feature/activity")}
           >
-            <ProductCard
-              title={product.title}
-              price={product.price}
-              rating={product.rating}
-              image={product.image}
-            />
-          </View>
-        ))}
+            {/* <Text className="text-[14px] text-blue-500">See all</Text> */}
+
+            {/* <Ionicons name="arrow-forward" size={16} color="#007BFF" /> */}
+          </TouchableOpacity>
+        </View>
+        <CategoryList />
+
+        <View className="flex-row justify-between items-center mt-6 px-2">
+          <Text className="text-[16px] font-bold">Trending & Popular</Text>
+          <TouchableOpacity
+            className="flex-row items-center"
+            onPress={() => router.push("./feature/activity")}
+          >
+            <Text className="text-[14px] mr-1">See all</Text>
+            <View className="bg-[#059212] p-2 rounded-full">
+              <Ionicons name="arrow-forward" size={10} color="white" />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <TrendingAndPopular
+          handleProductClick={handleProductClick}
+          products={products}
+        />
+
+        <View className="flex-row justify-between items-center mt-6 px-2">
+          <Text className="text-[16px] font-bold">Near Me</Text>
+          <TouchableOpacity
+            className="flex-row items-center"
+            onPress={() => router.push("./feature/activity")}
+          >
+            <Text className="text-[14px]  mr-1">See all</Text>
+            <View className="bg-[#059212] p-2 rounded-full">
+              <Ionicons name="arrow-forward" size={10} color="white" />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <TrendingAndPopular
+          handleProductClick={handleProductClick}
+          products={products}
+        />
+
+        <View className="flex-row justify-between items-center mt-6 px-2">
+          <Text className="text-[16px] font-bold">Recently Viewed</Text>
+          <TouchableOpacity
+            className="flex-row items-center"
+            onPress={() => router.push("./feature/activity")}
+          >
+            <Text className="text-[14px]  mr-1">See all</Text>
+            <View className="bg-[#059212] p-2 rounded-full">
+              <Ionicons name="arrow-forward" size={10} color="white" />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <TrendingAndPopular
+          handleProductClick={handleProductClick}
+          products={products}
+        />
       </ScrollView>
 
-      {/* StatusBar Setup */}
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <SafeAreaView className="flex-1 bg-white">
+          {/* Modal Content */}
+          <TouchableOpacity
+            onPress={() => setModalVisible(false)} // Close the modal
+            className="absolute top-10 left-5 z-10 p-2 bg-white rounded-full"
+          >
+            <Text className="text-blue-500">Close</Text>
+          </TouchableOpacity>
+
+          <ScrollView>
+            {/* Banner Image */}
+            <View className="h-96 bg-gray-200">
+              <Image
+                source={selectedProduct?.image}
+                style={{ width: "100%", height: "100%" }}
+                resizeMode="cover"
+              />
+            </View>
+
+            {/* Product Details */}
+            <View className="px-4 py-4">
+              <Text className="text-xl font-bold">
+                {selectedProduct?.title}
+              </Text>
+              <Text className="text-md text-green-500 mt-2">
+                Php {selectedProduct?.price.toFixed(2)}
+              </Text>
+              <Text className="text-sm mt-2">
+                {selectedProduct?.rating} / 5 Rating
+              </Text>
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      </Modal>
+
       <StatusBar
         barStyle="dark-content"
         backgroundColor="transparent"
@@ -150,4 +248,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default Home;

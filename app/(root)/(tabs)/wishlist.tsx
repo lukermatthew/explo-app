@@ -1,17 +1,10 @@
-import React from "react";
-import { SafeAreaView, StatusBar, Text, View, ScrollView } from "react-native";
 import ProductCard from "@/components/ProductCard";
-import { products } from ".";
-import diving from "@/assets/svg/diving.jpg";
-import hiking from "@/assets/svg/hiking.jpg";
-import pottery from "@/assets/svg/pottery.png";
-import fishing from "@/assets/svg/fishing.png";
-import gardening from "@/assets/svg/gardening.png";
-import sports from "@/assets/svg/sports.png";
+import React from "react";
+import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
+
 import baking from "@/assets/svg/baking.png";
-import music from "@/assets/svg/music.png";
-import science from "@/assets/svg/science.png";
 import zoo from "@/assets/svg/zoo.png";
+import { products } from ".";
 
 export const wishlists = [
   {
@@ -31,7 +24,7 @@ export const wishlists = [
   },
 ];
 
-const FavoriteScreen = () => {
+const WishList = () => {
   return (
     <SafeAreaView className="flex-1 bg-white">
       {/* Main ScrollView to make the whole screen scrollable */}
@@ -99,4 +92,4 @@ const FavoriteScreen = () => {
   );
 };
 
-export default FavoriteScreen;
+export default WishList;
