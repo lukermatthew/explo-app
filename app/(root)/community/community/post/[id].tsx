@@ -13,7 +13,9 @@ import { FontAwesome } from "@expo/vector-icons";
 import {
   findCommunityPosts,
   getNestedComments,
+  getPostCommentsCount,
 } from "@/assets/constants/communities";
+import BadgesDisplay from "@/components/BadgesDisplay";
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
@@ -63,10 +65,10 @@ const Comment = ({ comment }: any) => {
 };
 
 const PostDetails = () => {
-  const { id } = useLocalSearchParams();
+  const { id }: { id: string } = useLocalSearchParams();
   const router = useRouter();
 
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState(findCommunityPosts(id));
   const [loading, setLoading] = useState(true);
   const [isUpVoted, setIsUpVoted] = useState(false);
   const [isDownVoted, setIsDownVoted] = useState(false);
@@ -89,7 +91,7 @@ const PostDetails = () => {
 
   return (
     <SafeAreaView className="flex-1">
-      <View className="flex-row items-center justify-between px-4 pt-4">
+      <View className="flex-row items-center justify-between px-4 pt-4 border-b border-gray-300 mb-2">
         <View className="flex-row items-center py-4">
           <TouchableOpacity onPress={() => router.push("../")}>
             <FontAwesome name="arrow-left" size={20} color="#999" />
@@ -100,11 +102,18 @@ const PostDetails = () => {
       <ScrollView className="flex-1 px-4">
         <View className="w-full mb-4">
           <Text className="text-[24px] font-bold">{post.title}</Text>
-          <Text className="text-sm text-gray-500 mb-4">
+          <Text className="text-sm text-gray-500">
             Posted by: <Text className="font-semibold">{post.postedBy}</Text>
             {"  "}•{"  "}
             <Text className="font-light">{formatDate(post.createdAt)}</Text>
           </Text>
+          <View className="flex-col justify-between mb-4">
+            {post.userBadges.length > 0 && 
+              <View className="flex-col justify-between">
+                <BadgesDisplay badges={post.userBadges} />
+              </View>
+            }
+          </View> 
           {post.image && (
             <Image
               source={post.image}
@@ -151,8 +160,8 @@ const PostDetails = () => {
                 className="flex-row gap-2 p-2"
               >
                 <FontAwesome name="comments" size={15} color="#999" />
-                {post.comments > 0 && (
-                  <Text className="text-[12px] font-bold">{post.comments}</Text>
+                {getPostCommentsCount(post.id) > 0 && (
+                  <Text className="text-[12px] font-bold">{getPostCommentsCount(post.id)}</Text>
                 )}
               </TouchableOpacity>
             </View>
@@ -161,15 +170,8 @@ const PostDetails = () => {
                 <FontAwesome name="share" size={15} color="#999" />
               </TouchableOpacity>
             </View>
-          </View>
+          </View> 
           <View>
-            {/* <Text className="text-sm text-gray-500 mt-4">
-              Comments:{" "}
-              <Text className="font-semibold">
-                {getNestedComments(post.id).length}
-                {JSON.stringify(getNestedComments(post.id))}
-              </Text>
-            </Text> */}
             {getNestedComments(post.id).map((comment: any) => (
               <Comment key={comment.id} comment={comment} />
             ))}

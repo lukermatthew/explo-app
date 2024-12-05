@@ -45,7 +45,7 @@ const CommunityIndex = () => {
   return (
     <SafeAreaView className="flex-1">
 
-      <View className="flex-row items-center justify-between px-4 pt-4">
+      <View className="flex-row items-center justify-between px-4 pt-4 border-b border-gray-300 mb-2">
         <View className="flex-row items-center py-4">
           <TouchableOpacity onPress={() => router.push("../")}>
             <FontAwesome name="arrow-left" size={20} color="#999" />

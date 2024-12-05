@@ -15,7 +15,7 @@ const CommunityList = () => {
   const router = useRouter();
 
   const handleCommunityPress = (communityRoute: string) => {
-    router.push(`/${communityRoute}` as any);
+    router.push(`/community/community/${communityRoute}` as any);
   };
 
   return (

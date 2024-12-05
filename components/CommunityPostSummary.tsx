@@ -46,7 +46,7 @@ const CommunityPostSummary: React.FC<CommunityPostSummaryProps> = ({
   const router = useRouter();
 
   const handlePostPress = (postId: string) => {
-    router.push(`./community/post/${postId}` as any);
+    router.push(`/community/community/post/${postId}` as any);
   };
 
   const [isUpVoted, setIsUpVoted] = useState(false);

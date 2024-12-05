@@ -485,11 +485,19 @@ export function findCommunityPosts(id: string) {
   return posts.find((posts) => posts.community === id);
 }
 
+export function findCommunityPostsLists(id: string) {
+  return posts.filter((posts) => posts.community === id);
+}
+
 export function findPostsCommunity(id: string) {
   return communities.find((communities) => communities.id === id);
 }
 
 export function getBadgeById(id: string) {
   return badges.find((badge) => badge.id === id);
+}
+
+export function getPostCommentsCount(id: string) {
+  return comments.filter((comment) => comment.postId === id).length;
 }
 
