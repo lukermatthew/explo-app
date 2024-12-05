@@ -7,8 +7,11 @@ import {
   SafeAreaView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 const HeaderNav = () => {
+  const router = useRouter();
+
   return (
     <SafeAreaView>
       <View className="flex-row items-center justify-between pt-4 px-4">
@@ -60,6 +63,21 @@ const HeaderNav = () => {
         {/* Added marginLeft to separate text from avatar */}
         {/* Notification with Badge */}
         <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+          {/* Notification Icon */}
+          <TouchableOpacity
+            style={{
+              width: 30,
+              height: 30,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 25,
+              backgroundColor: "#f0f0f0",
+            }}
+            onPress={() => router.push("/community/communityIndex")}
+          >
+            <Ionicons name="people-circle-outline" size={26} color="#059212" />
+          </TouchableOpacity>
+
           {/* Notification Icon */}
           <TouchableOpacity
             style={{
