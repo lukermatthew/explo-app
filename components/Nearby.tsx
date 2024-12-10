@@ -2,12 +2,7 @@ import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import React from "react";
 
 interface NearbyProps {
-  handleProductClick: (locations: {
-    id: string;
-    title: string;
-    km: number;
-    image: any;
-  }) => void;
+  handleProductClick: (productId: string) => void;
   locations: Array<{
     id: string;
     title: string;
@@ -22,7 +17,7 @@ const Nearby: React.FC<NearbyProps> = ({ handleProductClick, locations }) => {
       {locations.map((location) => (
         <View key={location.id} className="mr-4">
           <TouchableOpacity
-            onPress={() => handleProductClick(location)} // Handle product click
+            onPress={() => handleProductClick(location.id)} // Handle product click
             className="relative w-40 h-44 rounded-xl overflow-hidden bg-white" // Tailwind classes
           >
             <Image

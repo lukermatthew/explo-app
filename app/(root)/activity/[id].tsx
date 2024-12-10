@@ -13,17 +13,51 @@ import {
 } from "react-native-responsive-screen";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FontAwesome } from "@expo/vector-icons";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 
 import diving from "@/assets/svg/diving.jpg";
+import { products } from "../(tabs)";
 
 export default function DetailScreen() {
-  const [activeTab, setActiveTab] = useState("overview");
+  const { id } = useLocalSearchParams();
 
+  const product = products.find((p) => p.id === id);
+
+  const [activeTab, setActiveTab] = useState("overview");
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   const handleWishlistToggle = () => {
     setIsWishlisted(!isWishlisted);
+  };
+
+  const renderRatingStars = (rating: number) => {
+    const fullStars = Math.floor(rating);
+    const halfStars = rating % 1 >= 0.5 ? 1 : 0;
+    const emptyStars = 5 - fullStars - halfStars;
+
+    return (
+      <View className="flex-row items-center">
+        {[...Array(fullStars)].map((_, index) => (
+          <FontAwesome
+            key={`full-${index}`}
+            name="star"
+            size={16}
+            color="#FFD700"
+          />
+        ))}
+        {halfStars > 0 && (
+          <FontAwesome name="star-half-o" size={16} color="#FFD700" />
+        )}
+        {[...Array(emptyStars)].map((_, index) => (
+          <FontAwesome
+            key={`empty-${index}`}
+            name="star-o"
+            size={16}
+            color="#FFD700"
+          />
+        ))}
+      </View>
+    );
   };
 
   const scrollY = useRef(new Animated.Value(0)).current; // Animated value to track scroll position
@@ -45,7 +79,7 @@ export default function DetailScreen() {
         }}
       >
         <Image
-          source={diving}
+          source={product?.image}
           style={{ width: "100%", height: "100%", resizeMode: "cover" }}
         />
       </Animated.View>
@@ -173,7 +207,7 @@ export default function DetailScreen() {
               {activeTab === "overview" && (
                 <>
                   <Text className="text-2xl font-bold text-gray-800">
-                    Diving Adventure
+                    {product?.title}
                   </Text>
                   <Text className="text-base text-gray-600 mt-2">
                     Explore the deep blue with a thrilling diving adventure.
@@ -181,6 +215,9 @@ export default function DetailScreen() {
                     ocean's depths. A truly unforgettable experience for
                     adventure lovers.
                   </Text>
+                  <View className="mt-1">
+                    {renderRatingStars(product?.rating)}
+                  </View>
                   <View className="mt-4">
                     <Text className="text-xl font-semibold text-gray-800">
                       Package Highlights
@@ -310,7 +347,9 @@ export default function DetailScreen() {
         {/* Price Section */}
         <View className="flex-row items-center">
           <Text className="text-[12px] text-gray-600">Price</Text>
-          <Text className="text-lg font-semibold text-gray-800 mx-1">₱899</Text>
+          <Text className="text-lg font-semibold text-gray-800 mx-1">
+            ₱{product?.price}
+          </Text>
         </View>
 
         {/* Book Now Button */}

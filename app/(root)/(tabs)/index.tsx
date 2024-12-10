@@ -139,11 +139,9 @@ export const locations: Location[] = [
 ];
 
 const Home = () => {
-  const handleProductClick = (product: Product) => {
-    // Pass the selected product as a parameter to the Details page
+  const handleProductClick = (productId: string) => {
     router.push({
-      pathname: "/activity/details", // Ensure this path matches your file structure in Expo Router
-      params: { selectedProduct: product },
+      pathname: `/activity/${productId}`,
     });
   };
 
@@ -211,8 +209,8 @@ const Home = () => {
             </TouchableOpacity>
           </View>
           <Nearby
-            handleProductClick={handleProductClick}
             locations={locations}
+            handleProductClick={handleProductClick}
           />
 
           <View className="flex-row justify-between items-center mt-6 px-2">

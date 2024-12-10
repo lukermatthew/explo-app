@@ -24,20 +24,18 @@ import more from "@/assets/images/categories/application.png";
 import { FontAwesome } from "@expo/vector-icons";
 
 // Categories data
-const categories = [
-  { id: "10", name: "Music", icon: band, route: "music" },
-  { id: "7", name: "Gardening", icon: gardening, route: "gardening" },
-  { id: "8", name: "Baking", icon: baking, route: "baking" },
-  { id: "9", name: "Gym", icon: gym, route: "gym" },
-  { id: "1", name: "Hiking", icon: hiking, route: "hiking" },
-  { id: "2", name: "Cycling", icon: cycling, route: "cycling" },
-  { id: "3", name: "Camping", icon: camping, route: "camping" },
-  { id: "4", name: "Fishing", icon: fishing, route: "fishing" },
-  { id: "5", name: "Diving", icon: diving, route: "diving" },
-  { id: "6", name: "Sports", icon: sports, route: "sports" },
-  { id: "11", name: "See all", icon: more, route: "feature/categoryList" },
+export const categories = [
+  { id: "10", name: "Music", icon: band, route: "../activity/" },
+  { id: "7", name: "Gardening", icon: gardening, route: "../activity" },
+  { id: "8", name: "Baking", icon: baking, route: "../activity" },
+  { id: "9", name: "Gym", icon: gym, route: "../activity" },
+  { id: "1", name: "Hiking", icon: hiking, route: "../activity" },
+  { id: "2", name: "Cycling", icon: cycling, route: "../activity" },
+  { id: "3", name: "Camping", icon: camping, route: "../activity" },
+  { id: "4", name: "Fishing", icon: fishing, route: "../activity" },
+  { id: "5", name: "Diving", icon: diving, route: "../activity" },
+  { id: "6", name: "Sports", icon: sports, route: "../activity" },
 ];
-
 const CategoryList = () => {
   const router = useRouter();
 
