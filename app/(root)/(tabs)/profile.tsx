@@ -1,4 +1,5 @@
 import BadgeCard from "@/components/BadgeCard";
+import { router } from "expo-router";
 import React from "react";
 import {
   SafeAreaView,
@@ -33,9 +34,8 @@ const AccountManagementScreen = () => {
             <Text className="text-gray-500">juan.delacruz@example.com</Text>
           </View>
         </View>
-        <View className="px-6">
-          <BadgeCard />
-        </View>
+
+        <BadgeCard />
 
         {/* Account Actions */}
         <View className="mt-6 px-4">

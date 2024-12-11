@@ -7,9 +7,16 @@ interface ProductProps {
   price: number;
   rating: number;
   image: any; // Can be a require or image URL
+  onPress: () => void;
 }
 
-const Product: React.FC<ProductProps> = ({ title, price, rating, image }) => {
+const Product: React.FC<ProductProps> = ({
+  title,
+  price,
+  rating,
+  image,
+  onPress,
+}) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   const handleWishlistToggle = () => {
@@ -49,9 +56,10 @@ const Product: React.FC<ProductProps> = ({ title, price, rating, image }) => {
 
   return (
     <TouchableOpacity
+      onPress={onPress} // Handle card click
       style={{
         backgroundColor: "white",
-        borderRadius: 15,
+        borderRadius: 20,
         overflow: "hidden",
         marginBottom: 10,
         borderWidth: 1,

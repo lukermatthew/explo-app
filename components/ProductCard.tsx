@@ -1,3 +1,4 @@
+import { useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome"; // Import FontAwesome icons
@@ -18,6 +19,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onPress,
 }) => {
   const [isWishlisted, setIsWishlisted] = useState(false); // State for wishlist toggle
+
+  const { id } = useLocalSearchParams();
 
   const handleWishlistToggle = () => {
     setIsWishlisted(!isWishlisted);

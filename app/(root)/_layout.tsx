@@ -8,6 +8,7 @@ const Layout = () => {
       <Stack.Screen name="category" options={{ headerShown: false }} />
       <Stack.Screen name="community" options={{ headerShown: false }} />
       <Stack.Screen name="board" options={{ headerShown: false }} />
+      <Stack.Screen name="badge" options={{ headerShown: false }} />
     </Stack>
   );
 };

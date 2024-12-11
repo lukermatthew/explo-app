@@ -4,13 +4,7 @@ import ProductCard from "./ProductCard";
 
 // Define prop types for TrendingAndPopular
 interface TrendingPopularProps {
-  handleProductClick: (product: {
-    id: string;
-    title: string;
-    price: number;
-    rating: number;
-    image: any;
-  }) => void;
+  handleProductClick: (productId: string) => void;
   products: Array<{
     id: string;
     title: string;
@@ -33,7 +27,7 @@ const TrendingAndPopular: React.FC<TrendingPopularProps> = ({
             key={product.id}
             className=""
             style={{
-              width: 130, // Fixed width for consistent card size
+              width: 130,
             }}
           >
             <ProductCard
@@ -41,7 +35,7 @@ const TrendingAndPopular: React.FC<TrendingPopularProps> = ({
               price={product.price}
               rating={product.rating}
               image={product.image}
-              onPress={() => handleProductClick(product)} // Pass the onPress prop to ProductCard
+              onPress={() => handleProductClick(product.id)}
             />
           </View>
         ))}

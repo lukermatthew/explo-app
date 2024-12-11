@@ -14,7 +14,7 @@ const HeaderNav = () => {
 
   return (
     <SafeAreaView>
-      <View className="flex-row items-center justify-between pt-4 px-4">
+      <View className="flex-row items-center justify-between pt-2 px-4">
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           {/* Avatar */}
           <TouchableOpacity>

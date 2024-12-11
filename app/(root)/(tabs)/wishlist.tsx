@@ -5,10 +5,11 @@ import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
 import baking from "@/assets/svg/baking.png";
 import zoo from "@/assets/svg/zoo.png";
 import { products } from ".";
+import { router } from "expo-router";
 
 export const wishlists = [
   {
-    id: 7,
+    id: "7",
     title: "Baking Class - Master the Art of Pastry",
     price: 299.99,
     rating: 5.0,
@@ -16,7 +17,7 @@ export const wishlists = [
   },
 
   {
-    id: 10,
+    id: "10",
     title: "Zoo Tour - A Fun Day with Wildlife",
     price: 299.99,
     rating: 5.0,
@@ -25,6 +26,12 @@ export const wishlists = [
 ];
 
 const WishList = () => {
+  const handleProductClick = (productId: string) => {
+    router.push({
+      pathname: `/activity/${productId}`,
+    });
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       {/* Main ScrollView to make the whole screen scrollable */}
@@ -34,22 +41,17 @@ const WishList = () => {
           <Text className="text-[20px] font-bold">WishList</Text>
         </View>
         <View
-          className="flex flex-wrap flex-row justify-between"
+          className="flex flex-wrap flex-row "
           style={{ paddingHorizontal: 10 }}
         >
           {wishlists.map((product) => (
-            <View
-              key={product.id}
-              style={{
-                width: "48%", // Adjust to 48% width so two items fit per row
-                marginBottom: 10, // Space between rows
-              }}
-            >
+            <View key={product.id}>
               <ProductCard
                 title={product.title}
                 price={product.price}
                 rating={product.rating}
                 image={product.image}
+                onPress={() => handleProductClick(product.id)}
               />
             </View>
           ))}
@@ -59,23 +61,15 @@ const WishList = () => {
         <View className="px-4 mt-10">
           <Text className="text-[20px] font-bold">Recommendation</Text>
         </View>
-        <View
-          className="flex flex-wrap flex-row justify-between"
-          style={{ paddingHorizontal: 10 }}
-        >
+        <View className="flex flex-wrap flex-row ">
           {products.map((product) => (
-            <View
-              key={product.id}
-              style={{
-                width: "48%", // Adjust to 48% width so two items fit per row
-                marginBottom: 10, // Space between rows
-              }}
-            >
+            <View>
               <ProductCard
                 title={product.title}
                 price={product.price}
                 rating={product.rating}
                 image={product.image}
+                onPress={() => handleProductClick(product.id)}
               />
             </View>
           ))}

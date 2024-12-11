@@ -19,6 +19,12 @@ const ActivityScreen = () => {
   const router = useRouter();
   const [isFocused, setIsFocused] = useState(false);
 
+  const handleProductClick = (productId: string) => {
+    router.push({
+      pathname: `/activity/${productId}`,
+    });
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-row items-center px-4 py-2 bg-white">
@@ -68,7 +74,7 @@ const ActivityScreen = () => {
           <Text className="text-[16px] font-bold">Trending & Popular</Text>
         </View>
 
-        <View className="w-full">
+        <View className="w-full px-2">
           {products
             .filter((product) =>
               product.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -80,6 +86,7 @@ const ActivityScreen = () => {
                   price={product.price}
                   rating={product.rating}
                   image={product.image}
+                  onPress={() => handleProductClick(product.id)}
                 />
               </View>
             ))}
